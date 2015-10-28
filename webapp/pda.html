@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="product" content="SAL Data Entry Aperture">
+  <meta name="description" content="Data Entry Terminal Interface to SAL.">
+  <meta name="author" content="LadyCofB">
+  <title>SAL scanner</title>
+</head>
+
+<body OnLoad="document.scanForm.barcode.focus();">
+  <h1>SAL Scan</h1>
+  <form name="scanForm" method="post" action="http://192.168.0.68:9000/barcodes?apikey=0">
+    Barcode.<br>
+    <input name="barcode" type="text">
+    <input type="submit"> 
+  </form>
+  <p></p>
+</body>
+</html>
+

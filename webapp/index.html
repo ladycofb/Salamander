@@ -1,0 +1,123 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="product" content="SAL Visual Interface Aperture">
+    <meta name="description" content="Visual interface for SAL.">
+    <meta name="author" content="LadyCofB">
+    
+    <title>SAL</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" type="text/css" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+
+    <!-- Metro UI CSS -->
+    <link href="css/metro.css" rel="stylesheet">
+    <link href="css/metro-rtl.css" rel="stylesheet">
+    <link href="css/metro-icons.css" rel="stylesheet">
+    <link href="css/docs.css" rel="stylesheet">
+    <link href="js/prettify/prettify.css" rel="stylesheet">
+    
+    <!--NOT FOR 800x600-->
+    <!--<link href="css/metro-bootstrap-responsive.css" rel="stylesheet">-->
+
+    <!-- Load JavaScript Libraries -->
+    <script src="js/jquery/jquery-2.1.4.js"></script>
+    <script src="js/jquery/jquery-ui.js"></script>
+    <script src="js/prettify/prettify.js"></script>
+
+    <!-- Metro UI CSS JavaScript plugins -->
+    <script>$(function(){$("<script/>").attr('src', 'js/metro.js').appendTo($('head'));})</script>
+    <script>
+    $(function() {
+        display = $('#salamanderInterfaceHeader'),
+        display.text("Text Test");
+    });
+    </script>
+    
+    <!-- Salamander UI Javascript -->
+    <script src="js/sal-interface.js"></script>
+<style>
+.keypad {
+  position: relative;
+  width: 298px;
+  padding: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  background-color: #ffffff;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.keypad:before,
+.keypad:after {
+  display: table;
+  content: "";
+}
+.keypad:after {
+  clear: both;
+}
+.keypad .key {
+  width: 96px;
+  height: 96px;
+  display: block;
+  float: left;
+  margin: 1px;
+  border: 1px #eeeeee solid;
+  vertical-align: middle;
+  text-align: center;
+  cursor: pointer;
+  font-size: .875rem;
+  line-height: 96px;
+}
+.keypad .key:hover {
+  background-color: #eeeeee;
+}
+.keypad .key:active {
+  background-color: #555555;
+  color: #ffffff;
+}
+.keypad.shadow {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+}
+</style>
+</head>
+
+
+<body class="bg-black">
+  <div class="app-bar" id="appBarContainer">
+    <a class="app-bar-element branding" href=""><span class="icon mif-cogs"></span> SAL</a>
+    <span class="app-bar-divider"></span>
+    <ul class="app-bar-menu">
+      <li><a id="homeButton">Home</a></li>
+      <li>
+        <a class="dropdown-toggle">Applications</a>
+        <ul class="d-menu" data-role="dropdown" id="salamanderAppList">
+          <li><a id="appMeteorology">Meteorology</a></li>
+          <li><a id="appCommunications">Communications</a></li>
+          <li><a id="appController">Controller</a></li>
+          <li><a id="appInventory">Inventory</a></li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown-toggle">Modes</a>
+        <ul class="d-menu" data-role="dropdown" id="salamanderModeList">
+          <li><a id="">Bright</a></li>
+          <li><a id="">Efficient</a></li>
+          <li><a id="">Party</a></li>
+          <li><a id="">Security</a></li>
+        </ul>
+      </li>
+      <li><a id="lockButton">Lock</a></li>
+    </ul>
+  </div>
+
+  <main class="bg-black" id="salamanderPanelSpace"></main>
+
+</body>
+</html>
+
+

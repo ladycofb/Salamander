@@ -1,0 +1,22 @@
+{
+  "name": "salamander",
+  "description": "Home Automation System",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ladycofb/salamander.git"
+  },
+  "bugs": {
+    "url" : "http://github.com/ladycofb/salamander/issues"
+  },
+  "author": {
+    "name": "ladycofb",
+    "url" : "http://github.com/ladycofb"
+  },
+  "licence": "AGPL-3.0",
+  "dependencies": {
+    "restify": "4.0.3",
+    "mongojs": "1.4.1",
+    "bson": "0.4.19"
+  }
+}
