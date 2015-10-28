@@ -1,7 +1,7 @@
 {
   "name": "salamander",
-  "description": "Home Automation System",
-  "version": "0.0.1",
+  "description": "Simple ALgorithmic AutoMation AND Efficient Repository",
+  "version": "0.0.2",
   "repository": {
     "type": "git",
     "url": "git://github.com/ladycofb/salamander.git"
