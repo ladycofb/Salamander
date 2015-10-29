@@ -2,22 +2,21 @@
 
 <script type="text/javascript">
   /* Meteorology Processing */
+  var dataPointKey = '&key=7ed9189d-6f69-47bc-92f7-d1374c7285d6';
   function drawWeatherMap() {
 	  var maxBounds = [[48,-12], [61,5]];
     var imageBounds = [[48,-12], [61,5]];
 	  var map = L.map('pageDetail',{center:new L.LatLng(54, -2),zoom:6,maxBounds:maxBounds});
 	  var osmAttrib='Map data &copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors<\/a>';
 	  var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution: osmAttrib});
-	
-	  var RainImageUrl = 'http://www.metoffice.gov.uk/media/image/h/o/Radar_Composite.png';
-	  /* Note your live site would use something like the following line instead of the line above
-	  var imageUrl = 'http://datapoint.metoffice.gov.uk/public/data/layer/wxobs/RADAR_UK_Composite_Highres/png?TIME=2013-04-24T20:00:00Z&key={key}';
-	
-	  you will need to replace {key}  with your actual API key, and replace 2013-04-24T20:00:00 with the date/time that an image is available for;at
-	  the time of writing this example images are only available for the last 3 hours 	*/
-	
-	  var rainLayer = L.imageOverlay(RainImageUrl, imageBounds);
-	  var LightningImageUrl = 'http://www.vectis-webdesign.com/DataPoint/Lightning.png';
+
+	  var layerTimes = fetchCapabilities()
+	  var layerTime = layerTimes[layerTimes.length-1]
+	  var rainImageUrl = 'http://datapoint.metoffice.gov.uk/public/data/layer/wxobs/RADAR_UK_Composite_Highres/png?TIME=' + layerTime + 'Z' + dataPointKey;
+	  var rainLayer = L.imageOverlay(rainImageUrl, imageBounds);
+	  map.addLayer(osm);
+	  map.addLayer(rainLayer);
+	  /*var LightningImageUrl = 'http://www.vectis-webdesign.com/DataPoint/Lightning.png';
 	  var lightningLayer = L.imageOverlay(LightningImageUrl, imageBounds);
 	
 	  var overlays = {
@@ -27,17 +26,18 @@
 	
 	  map.addLayer(osm);
 	  map.addLayer(rainLayer);
-	  L.control.layers('',overlays,{collapsed:false}).addTo(map);
+	  L.control.layers('',overlays,{collapsed:false}).addTo(map);*/
   }
 
   function fetchCapabilities()
     {
     var xmlHttp = null;
-
+    capabilitiesUrl = "http://datapoint.metoffice.gov.uk/public/data/layer/wxobs/all/json/capabilities?" + dataPointKey;
     xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "http://datapoint.metoffice.gov.uk/public/data/layer/wxobs/all/json/capabilities?key=7ed9189d-6f69-47bc-92f7-d1374c7285d6", false );
+    xmlHttp.open( "GET", capabilitiesUrl, false );
     xmlHttp.send( null );
-    return xmlHttp.responseText;
+    mocaps = JSON.parse(xmlHttp.responseText)
+    return mocaps.Layers.Layer[3].Service.Times.Time;
   }
 
   function runMeteorology() {
@@ -51,7 +51,6 @@
   /* Set up Panel */
   function panelInitialize() {
     console.log("Initialised panel appMeteorology.");
-    
     availablePanelSpace = $( '#salamanderPanelSpace' ).height()
     console.log('Setting pageDetail height to '+availablePanelSpace.toString()); // returns height of pageDetail space
     $( '#pageDetail' ).height(availablePanelSpace);
