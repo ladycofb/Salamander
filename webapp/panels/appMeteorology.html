@@ -1,4 +1,26 @@
-<div id="pageDetail"></div>
+<div id="pageDetail">
+  <div class="tile-area no-padding">
+    <div class="tile tile-super-x tile-big-y bg-grayLighter" data-role="tile">   
+      <div class="tile-content" id="weatherDataPane" style="width:100%; height:100%;">
+      </div>
+    </div>
+    <div class="tile bg-blue" data-role="tile">   
+      <div class="tile-content iconic">
+        <span class="icon mif-search"></span>
+      </div>
+    </div>
+    <div class="tile bg-blue" data-role="tile">   
+      <div class="tile-content iconic">
+        <span class="icon mif-water"></span>
+      </div>
+    </div>
+    <div class="tile bg-blue" data-role="tile">   
+      <div class="tile-content iconic">
+        <span class="icon mif-lightning2"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script type="text/javascript">
   /* Meteorology Processing */
@@ -6,7 +28,7 @@
   function drawWeatherMap() {
 	  var maxBounds = [[48,-12], [61,5]];
     var imageBounds = [[48,-12], [61,5]];
-	  var map = L.map('pageDetail',{center:new L.LatLng(54, -2),zoom:6,maxBounds:maxBounds});
+	  var map = L.map('weatherDataPane',{center:new L.LatLng(54, -2),zoom:6,maxBounds:maxBounds});
 	  var osmAttrib='Map data &copy; <a href="http://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap contributors<\/a>';
 	  var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution: osmAttrib});
 
@@ -41,7 +63,7 @@
   }
 
   function runMeteorology() {
-    console.log('Called salLibraryComputer.runMeteorology');
+    console.log('Called appMeteorology.runMeteorology');
     $.getScript("http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js",function () {
       drawWeatherMap()
     })
